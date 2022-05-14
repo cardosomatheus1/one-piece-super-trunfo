@@ -1,0 +1,103 @@
+.container{
+    display: flex;
+}
+h1{
+    text-align: center;
+}
+.form{
+width: 50%;
+display:flex;
+flex-direction: column;
+border: 1px solid #000000;
+text-align: center;
+}
+.card{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #000000;
+    color: white;
+    background-color: rgb(3, 38, 3);
+}
+form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+textarea{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+label{
+    display: block;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+
+}
+
+select{
+    display: flex;
+    margin-top: 10px;
+
+    text-align: center;
+}
+
+#check{
+    display:inline-block;
+   
+}
+#checkbox{
+    display:inline-block;
+    align-items: flex-start;
+}
+
+button{
+    width: 20%;
+    margin-bottom: 20px;
+    
+}
+
+.imagem{
+    display: flex;
+    width: 150px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.cart{
+    color: white;
+    display: flex;
+    width: 300px;
+    height: 600px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 3px solid white;
+    border-radius: 10px;
+    padding: 10px;  
+    background-color: rgb(8, 80, 8);
+}
+.card1{
+    display: flex;
+    align-items: center;
+    justify-content:baseline;
+    text-align: center;
+    border: 1px solid #000000;
+    color: white;
+    background-color: rgb(3, 38, 3);
+}
