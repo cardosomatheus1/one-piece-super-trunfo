@@ -1,3 +1,224 @@
+.header{
+  display: flex;
+  color:white;
+  background-color:black;
+  justify-content: center
+}
+
+.logo1{
+  width: 100px;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:white;
+
+}
+
 .container {
   display: flex;
+  background-color:rgb(8, 80, 8);
+  color: white;
+  border: 2px solid white;
+}
+
+.container input{
+  border-radius: 5px;
+}
+
+.container textarea{
+  border-radius: 5px;
+}
+
+.container  select{
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.formulario {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.form {
+  margin: 20px;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 50%;
+  border: 2px solid white;
+}
+
+.card {
+  align-items: center;
+  background-color: rgb(3, 38, 3);
+  border: 1px solid #000;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 50%;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+input {
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+}
+
+textarea {
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 15px;
+  margin-right: 10px;
+  margin-top: 10px;
+
+}
+
+select {
+  display: flex;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#check {
+  display: inline-block;
+
+}
+
+#checkbox {
+  align-items: flex-start;
+  display: inline-block;
+}
+
+button {
+  margin-bottom: 20px;
+  width: 20%;
+
+}
+
+.imagem {
+  border: 2px solid white;
+  border-radius: 10px;
+  display: flex;
+  width: 150px;
+}
+
+.cart {
+  align-items: center;
+  background-color: rgb(8, 80, 8);
+  border: 3px solid white;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.card1 {
+  align-items: center;
+  background-color: rgb(3, 38, 3);
+  border: 1px solid #000;
+  color: white;
+  display: flex;
+  justify-content: baseline;
+  text-align: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.filters {
+    margin: 20px 0 20px 0;
+    width: 30%;
+    display: flex;  
+    justify-content:space-around;
+    align-items: center;
+}
+
+.containerFilters{
+    width: 100%;
+    display: flex;  
+    justify-content:space-around;
+    align-items: flex-start;
+}
+
+
+.filters input {
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+.trunfo1{
+    display: flex;
+    justify-content:space-around;
+    width: 150px;
+    align-items: center;
+}
+
+.filter select{
+    display: flex;
+
+}
+
+.game{
+display: flex;
+background-color: rgb(3, 38, 3);
+justify-content: center;
+
+}
+.showCards{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.logo{
+    display: flex ;
+    width: 90%;
+}
+
+.game1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.nextCard{
+    margin-top: 15px;
+    width: 90%;
+    
+}
+
+.game2{
+    display: flex;
+    flex-direction: column;
+    color:white;
+    align-items: center;
 }

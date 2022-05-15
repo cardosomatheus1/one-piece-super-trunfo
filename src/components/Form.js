@@ -32,7 +32,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="attr1">
-          Attr1
+          Força
           <input
             id="attr1"
             data-testid="attr1-input"
@@ -46,7 +46,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="attr2">
-          Attr2
+          Velocidade
           <input
             id="attr2"
             data-testid="attr2-input"
@@ -60,7 +60,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="atrr3">
-          Attr3
+          Inteligência
           <input
             id="atrr3"
             data-testid="attr3-input"
@@ -111,6 +111,7 @@ class Form extends React.Component {
               checked={ cardTrunfo }
               onChange={ onInputChange }
             />
+            <label id="check" htmlFor="checkbox"></label>
             Super Trybe Trunfo
           </label>)}
         <button

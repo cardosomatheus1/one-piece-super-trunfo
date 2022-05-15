@@ -4,6 +4,8 @@ import Form from './components/Form';
 import './App.css';
 
 class App extends React.Component {
+  cardList =localStorage.getItem('saveCard')?JSON.parse(localStorage.getItem('saveCard')):[];
+  temTrunfo = localStorage.getItem('trunfo')?JSON.parse(localStorage.getItem('trunfo')):false;
   state ={
     cardName: '',
     cardDescription: '',
@@ -13,22 +15,25 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: '',
-    hasTrunfo: false,
+    hasTrunfo: this.temTrunfo,
     isSaveButtonDisabled: true,
-    savedCard: [],
+    savedCard: this.cardList,
     filterName: '',
     filterAble: false,
     filterRare: 'todas',
     filterTrunfo: false,
+    sortCard: [],
+    positionCard: 0,
+    numberOfCards: this.cardList.length -1,
   }
 
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-
     this.setState({
       [name]: value,
     }, () => this.testValueMax());
+   
   }
 
   testValueMax = () => {
@@ -36,7 +41,7 @@ class App extends React.Component {
     const maxNumber = 90;
     const minNumber = 0;
     const { cardAttr1, cardAttr2, cardAttr3, cardName,
-      cardDescription, cardImage } = this.state;
+      cardDescription, cardImage} = this.state;
     const sumValue = parseInt(cardAttr1, 10)
     + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10);
     if (cardAttr3 > maxNumber
@@ -58,6 +63,19 @@ class App extends React.Component {
       });
     }
   }
+
+  localStore = (save) => {
+   
+    const stringArray = JSON.stringify(save);
+    localStorage.setItem('saveCard', stringArray);
+  }
+
+  localStoreTrunfo = (save) => {
+   
+    const stringArray = JSON.stringify(save);
+    localStorage.setItem('trunfo', stringArray);
+  }
+ 
 
   onSaveButtonClick = (event) => {
     event.preventDefault();
@@ -85,6 +103,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: '',
     });
+    
     if (cardTrunfo) {
       this.setState({
         hasTrunfo: true,
@@ -121,14 +140,83 @@ class App extends React.Component {
     this.setState({ savedCard: filterCard });
   }
 
+  onSortCardClick = () => {
+    const {savedCard} = this.state;
+    const sorted = savedCard.sort(() => Math.random() - 0.5)
+    this.setState({ sortCard: sorted });
+  }
+
+  nextCardClick = () => {
+    const { sortCard, positionCard } = this.state;
+    if (positionCard<sortCard.length-1) {
+    this.setState((estadoAnterior, _props) => ({
+      positionCard: estadoAnterior.positionCard + 1
+    }))
+    this.setState((estadoAnterior, _props) => ({
+      numberOfCards: estadoAnterior.numberOfCards - 1
+    }))
+  }
+  }
+
+  randomizeCard = () => {
+    const { savedCard } = this.state;
+    const sorted = savedCard.sort(() => Math.random() - 0.5)
+    this.setState({ sortCard: sorted });
+    this.setState({ positionCard: 0 });
+    this.setState({ numberOfCards: this.cardList.length -1});;
+  }
+
+
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
-      savedCard, filterName, filterRare, filterTrunfo, filterAble } = this.state;
+      savedCard, filterName, filterRare, filterTrunfo, filterAble,sortCard,positionCard,numberOfCards } = this.state;
+      this.localStore(savedCard)
+      this.localStoreTrunfo(hasTrunfo)
+      let cardList = []
+      let temTrunfo = false
+      if (localStorage.getItem('saveCard')) {
+        cardList = JSON.parse(localStorage.getItem('saveCard'));
+        temTrunfo = JSON.parse(localStorage.getItem('trunfo'));
+      }
     return (
       <div>
-        <h1>Tryunfo</h1>
+        <div className="header">
+        <div className="title">
+        <h1>One Piece Trunfo</h1>
+        <button onClick={this.onSortCardClick} type="button">Jogar</button>
+        </div>
+        <img className="logo1" src={"https://i.pinimg.com/564x/ec/78/f1/ec78f19f19347ffcf86c2f57177ecc30.jpg"}></img>
+        </div>
+        {sortCard.length>0?
+        <div className="game">
+        <div className="game1">
+        <Card
+              cardName={ sortCard[positionCard].cardName }
+              cardDescription={ sortCard[positionCard].cardDescription }
+              cardAttr1={ sortCard[positionCard].cardAttr1 }
+              cardAttr2={ sortCard[positionCard].cardAttr2 }
+              cardAttr3={ sortCard[positionCard].cardAttr3 }
+              cardImage={ sortCard[positionCard].cardImage }
+              cardRare={ sortCard[positionCard].cardRare }
+              cardTrunfo={ sortCard[positionCard].cardTrunfo }
+              hasTrunfo={ sortCard[positionCard].hasTrunfo }
+            />
+            {positionCard<sortCard.length-1?
+            <button className="nextCard" type="button" onClick={this.nextCardClick}>Proxima carta</button>:
+            <button  className="nextCard" type="button" onClick={this.randomizeCard}>Embaralhar</button>}
+            </div>
+            <div className="game2">
+            <div className="cart">
+              <h2>One Piece Trunfo</h2>
+              <img className="logo" src={"https://i.pinimg.com/564x/ec/78/f1/ec78f19f19347ffcf86c2f57177ecc30.jpg"}></img>
+            </div>
+              <p>{`Numero de cards: ${numberOfCards}`}</p>
+              </div>       
+          </div>:
+        <div>
         <div className="container">
+          <div className="formulario">
           <Form
             cardName={ cardName }
             cardDescription={ cardDescription }
@@ -143,6 +231,7 @@ class App extends React.Component {
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
           />
+          </div>
           <div className="card">
             <Card
               cardName={ cardName }
@@ -158,6 +247,8 @@ class App extends React.Component {
           </div>
         </div>
         <div className="card1">
+          <div className="filters">
+            <div className="containerFilters">
           <input
             disabled={ filterAble }
             type="text"
@@ -175,16 +266,21 @@ class App extends React.Component {
             <option>raro</option>
             <option>muito raro</option>
           </select>
-          <label htmlFor="trunfo">
+          <div className="trunfo1">
             <input
               type="checkbox"
               id="trunfo"
               data-testid="trunfo-filter"
               onChange={ this.filterCardsByTrunfo }
             />
+             <label htmlFor="trunfo">
             Super Trunfo
           </label>
-          {savedCard.filter((nameCards) => nameCards.cardName.toLowerCase()
+          </div>
+          </div>
+          </div>
+          <div className="showCards">
+          {cardList.filter((nameCards) => nameCards.cardName.toLowerCase()
             .includes(filterName))
             .filter((rareCards) => (filterRare === 'todas'
               ? rareCards : rareCards.cardRare === filterRare))
@@ -213,8 +309,10 @@ class App extends React.Component {
                 </button>
               </div>
             ))}
+            </div>
         </div>
-      </div>
+        </div>}
+  </div>
     );
   }
 }
